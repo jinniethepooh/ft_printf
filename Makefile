@@ -6,35 +6,39 @@
 #    By: cchetana <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/12 21:33:28 by cchetana          #+#    #+#              #
-#    Updated: 2022/03/19 23:14:52 by cchetana         ###   ########.fr        #
+#    Updated: 2022/04/02 22:41:16 by cchetana         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= libftprintf.a
-LIBFT_A = libft.a
-LIBFT	= libft
 SRCS	= ft_printf.c \
 	  ft_printf_format.c \
+	  ft_printf_format2.c \
+	  ft_printf_format3.c \
 	  ft_printf_utils.c \
-	  libft/ft_strlen.c
+	  ft_printf_utils2.c \
+	  ft_printf_validcheck.c \
+	  ft_printf_validcheck2.c
 CFLAGS	= gcc -Wall -Werror -Wextra
 LIBC	= ar -rcs
 RM	= rm -rf
 
 $(NAME): $(SRCS)
-	make -C $(LIBFT)
-	cp libft/libft.a .
 	$(CFLAGS) -c $(SRCS)
 	$(LIBC) $(NAME) *.o
 
 all: $(NAME)
 
+bonus: $(SRCS)
+	$(CFLAGS) -c $(SRCS)
+	$(LIBC) $(NAME) *.o
+
 clean:
-	$(RM) *.o $(LIBFT)/*.o
+	$(RM) *.o
 
 fclean: clean
-	$(RM) $(NAME) $(LIBFT_A) $(LIBFT)/$(LIBFT_A)
+	$(RM) $(NAME)
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all bonus clean fclean re

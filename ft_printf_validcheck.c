@@ -1,24 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   ft_printf_validcheck.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cchetana <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/20 09:56:52 by cchetana          #+#    #+#             */
-/*   Updated: 2022/02/26 17:17:33 by cchetana         ###   ########.fr       */
+/*   Created: 2022/04/02 21:10:17 by cchetana          #+#    #+#             */
+/*   Updated: 2022/04/02 21:14:29 by cchetana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-void	*ft_calloc(size_t count, size_t size)
+int	ft_is_numeric(char c)
 {
-	void	*ptr;
+	return ('0' <= c && c <= '9');
+}
 
-	ptr = malloc(count * size);
-	if (!ptr)
-		return (NULL);
-	ft_bzero(ptr, size * count);
-	return (ptr);
+int	ft_is_type(char c)
+{
+	return (c == 'c' || c == 's' || c == 'd' || c == 'i' || c == 'u' \
+			|| c == 'x' || c == 'X' || c == 'p' || c == '%');
+}
+
+int	ft_is_int(t_inf *inf)
+{
+	return (inf->type == 'd' || inf->type == 'i' || inf->type == 'u');
+}
+
+int	ft_is_hex(t_inf *inf)
+{
+	return (inf->type == 'X' || inf->type == 'x');
 }
